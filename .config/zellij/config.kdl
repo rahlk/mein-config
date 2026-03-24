@@ -195,6 +195,16 @@ keybinds {
         bind "Alt ]" { NextSwapLayout; }
         bind "Alt p" { TogglePaneInGroup; }
         bind "Alt Shift p" { ToggleGroupMarking; }
+        // Alt 1-9: go to tab N
+        bind "Alt 1" { GoToTab 1; SwitchToMode "Normal"; }
+        bind "Alt 2" { GoToTab 2; SwitchToMode "Normal"; }
+        bind "Alt 3" { GoToTab 3; SwitchToMode "Normal"; }
+        bind "Alt 4" { GoToTab 4; SwitchToMode "Normal"; }
+        bind "Alt 5" { GoToTab 5; SwitchToMode "Normal"; }
+        bind "Alt 6" { GoToTab 6; SwitchToMode "Normal"; }
+        bind "Alt 7" { GoToTab 7; SwitchToMode "Normal"; }
+        bind "Alt 8" { GoToTab 8; SwitchToMode "Normal"; }
+        bind "Alt 9" { GoToTab 9; SwitchToMode "Normal"; }
     }
     shared_except "normal" "locked" {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
@@ -268,7 +278,10 @@ load_plugins {
 //   - detach (Default)
 //   - quit
 //
-// on_force_close "quit"
+on_force_close "quit"
+
+session_name "zellij-main"
+attach_to_session true
 
 //  Send a request for a simplified ui (without arrow fonts) to plugins
 //  Options:
@@ -291,7 +304,7 @@ load_plugins {
 //   - true (default)
 //   - false
 //
-// pane_frames true
+pane_frames true
 
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:
@@ -346,7 +359,23 @@ load_plugins {
 // Choose the theme that is specified in the themes section.
 // Default: default
 //
-theme "gruvbox-dark"
+themes {
+    gruvbox-dark-mauve {
+        fg 177 98 134     // dark mauve (#b16286) — unfocused borders
+        bg 40 40 40
+        black 60 56 54
+        red 251 73 52
+        green 211 134 155 // bright mauve (#d3869b) — focused borders
+        yellow 250 189 47
+        blue 131 165 152
+        magenta 211 134 155
+        orange 254 128 25
+        cyan 142 192 124
+        white 168 153 132 // gruvbox fg4 — dimmed text
+    }
+}
+
+theme "gruvbox-dark-mauve"
 
 // The name of the default layout to load on startup
 // Default: "default"
