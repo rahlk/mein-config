@@ -1,0 +1,12 @@
+#!/bin/sh
+# Borderless macOS windows cannot host native tabs; open SSH in its own window.
+exec /usr/bin/osascript <<'APPLESCRIPT'
+tell application "Ghostty"
+  set cfg to new surface configuration
+  set command of cfg to "/bin/sh /Users/rkrsn/.config/ghostty/stagger-juice-session"
+  set sshWindow to new window with configuration cfg
+  set sshTerminal to focused terminal of selected tab of sshWindow
+  perform action "set_tab_title:stagger-juice" on sshTerminal
+  activate
+end tell
+APPLESCRIPT

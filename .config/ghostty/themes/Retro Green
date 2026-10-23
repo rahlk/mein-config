@@ -1,0 +1,24 @@
+# Green phosphor terminal palette.
+background = #010402
+foreground = #6dff80
+cursor-color = #9bffac
+cursor-text = #020a04
+selection-background = #164d25
+selection-foreground = #c8ffd1
+
+palette = 0=#020a04
+palette = 1=#398b49
+palette = 2=#55d96d
+palette = 3=#8cdb6b
+palette = 4=#318b61
+palette = 5=#63b877
+palette = 6=#4dd99a
+palette = 7=#97dfa3
+palette = 8=#346640
+palette = 9=#63bd73
+palette = 10=#6dff80
+palette = 11=#bdff8c
+palette = 12=#61c78f
+palette = 13=#9be0aa
+palette = 14=#88ffbf
+palette = 15=#d1ffda

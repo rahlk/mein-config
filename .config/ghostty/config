@@ -1,29 +1,44 @@
-# Start Ghostty without an initial window (running in the background)
-initial-window = false
+# Retro green phosphor palette.
+theme = Retro Green
 
-# Font settings
-font-family = SpaceMono Nerd Font Mono
-font-size = 14
+cursor-style = block
+cursor-style-blink = true
+font-family = ""
+font-family = Departure Mono
+# Use Maple Mono only for Nerd Font symbols, not ordinary text.
+font-codepoint-map = U+E000-U+F8FF,U+F0000-U+FFFFD=Maple Mono NF
 
+background-opacity = 1
+background-blur = false
 
-# Quick terminal settings
+custom-shader = shaders/block-cursor-halo.glsl
+# Continuous light jitter; occasional random bursts and bands with RGB splitting.
+custom-shader = shaders/glitch-timed-color-v12.glsl
+# CRT curvature, scan lines, and luminous text bloom.
+custom-shader = shaders/crt-bloom-v10.glsl
+# Bright monochrome text for both green and orange profiles.
+custom-shader = shaders/phosphor-brightness-v2.glsl
+custom-shader-animation = true
+
+# Merge tabs into the title bar when window decorations are enabled.
+macos-titlebar-style = tabs
+
+# Remove the native window frame and shadow.
+window-decoration = none
+macos-window-shadow = false
+
+# macOS service "Open Stagger Juice SSH Tab" handles Cmd+Shift+T.
+# Leave the key free for the service instead of typing into the terminal.
+keybind = super+shift+t=unbind
+
+# Toggle the drop-down terminal from any application.
 keybind = global:ctrl+backquote=toggle_quick_terminal
+quick-terminal-position = top
 
+# Turn off drop-down window animation
 
-# Quick terminal: 75% of screen (primary axis, secondary axis)
-# e.g. for position "top", this is 75% height and 75% width
-quick-terminal-size = 90%,100%
+quick-terminal-size = 100%,100%
 
-# Hide Ghostty from the macOS Dock + app switcher (Cmd-Tab)
-macos-hidden = always
+fullscreen = non-native
 
-# 95% opacity
-background-opacity = 0.85
-
-# Cursor
-cursor-style = bar
-
-
-# Background
-theme = light:Atom One Light,dark:catppuccin mocha
-background-blur = 15
+macos-non-native-fullscreen = true

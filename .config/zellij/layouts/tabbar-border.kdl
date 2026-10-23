@@ -1,0 +1,7 @@
+// Borderless tab bar at the top, no status bar, framed main pane.
+layout {
+    pane size=1 borderless=true {
+        plugin location="zellij:tab-bar"
+    }
+    pane
+}

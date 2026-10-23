@@ -1,0 +1,9 @@
+// SSH layout: tab bar on the bottom, no status bar.
+// Used by the SSH branch of the Zellij auto-start in ~/.zshrc.
+
+layout {
+    pane
+    pane size=1 borderless=true {
+        plugin location="zellij:tab-bar"
+    }
+}

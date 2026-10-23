@@ -1,0 +1,136 @@
+// Retro orange on black for SSH sessions.
+
+themes {
+    retro-orange {
+        text_unselected {
+            base "#FF9B42"
+            background "#000000"
+            emphasis_0 "#FF9B42"
+            emphasis_1 "#FFC266"
+            emphasis_2 "#CC7629"
+            emphasis_3 "#BF6633"
+        }
+        text_selected {
+            base "#FFE0B3"
+            background "#3D1D09"
+            emphasis_0 "#FF9B42"
+            emphasis_1 "#FFC266"
+            emphasis_2 "#CC7629"
+            emphasis_3 "#E6AD73"
+        }
+
+        ribbon_unselected {
+            base "#E6AD73"
+            background "#3D1D09"
+            emphasis_0 "#FF9B42"
+            emphasis_1 "#FFE0B3"
+            emphasis_2 "#FFC266"
+            emphasis_3 "#BF6633"
+        }
+        ribbon_selected {
+            base "#000000"
+            background "#FF9B42"
+            emphasis_0 "#3D1D09"
+            emphasis_1 "#FFE0B3"
+            emphasis_2 "#000000"
+            emphasis_3 "#995124"
+        }
+
+        table_title {
+            base "#FF9B42"
+            background "#000000"
+            emphasis_0 "#FFC266"
+            emphasis_1 "#FFE0B3"
+            emphasis_2 "#CC7629"
+            emphasis_3 "#BF6633"
+        }
+        table_cell_unselected {
+            base "#FF9B42"
+            background "#000000"
+            emphasis_0 "#FF9B42"
+            emphasis_1 "#FFC266"
+            emphasis_2 "#CC7629"
+            emphasis_3 "#BF6633"
+        }
+        table_cell_selected {
+            base "#FFE0B3"
+            background "#3D1D09"
+            emphasis_0 "#FF9B42"
+            emphasis_1 "#FFC266"
+            emphasis_2 "#CC7629"
+            emphasis_3 "#E6AD73"
+        }
+
+        list_unselected {
+            base "#FF9B42"
+            background "#000000"
+            emphasis_0 "#FF9B42"
+            emphasis_1 "#FFC266"
+            emphasis_2 "#CC7629"
+            emphasis_3 "#BF6633"
+        }
+        list_selected {
+            base "#FFE0B3"
+            background "#3D1D09"
+            emphasis_0 "#FF9B42"
+            emphasis_1 "#FFC266"
+            emphasis_2 "#CC7629"
+            emphasis_3 "#E6AD73"
+        }
+
+        frame_unselected {
+            base "#3D1D09"
+            background "#000000"
+            emphasis_0 "#BF6633"
+            emphasis_1 "#E6AD73"
+            emphasis_2 "#995124"
+            emphasis_3 "#3D1D09"
+        }
+        frame_selected {
+            base "#FF9B42"
+            background "#000000"
+            emphasis_0 "#FFC266"
+            emphasis_1 "#FFE0B3"
+            emphasis_2 "#CC7629"
+            emphasis_3 "#BF6633"
+        }
+        frame_highlight {
+            base "#FFC266"
+            background "#000000"
+            emphasis_0 "#FF9B42"
+            emphasis_1 "#FFE0B3"
+            emphasis_2 "#FFC266"
+            emphasis_3 "#BF6633"
+        }
+
+        exit_code_success {
+            base "#CC7629"
+            background "#000000"
+            emphasis_0 "#FF9B42"
+            emphasis_1 "#CC7629"
+            emphasis_2 "#E6AD73"
+            emphasis_3 "#BF6633"
+        }
+        exit_code_error {
+            base "#FF7733"
+            background "#000000"
+            emphasis_0 "#FF9B42"
+            emphasis_1 "#FFC266"
+            emphasis_2 "#E6AD73"
+            emphasis_3 "#BF6633"
+        }
+
+        multiplayer_user_colors {
+            player_1 "#FF9B42"
+            player_2 "#BF6633"
+            player_3 "#FFC266"
+            player_4 "#CC7629"
+            player_5 "#D98C47"
+            player_6 "#E6AD73"
+            player_7 "#995124"
+            player_8 "#FFCC8C"
+            player_9 "#FF7733"
+            player_10 "#3D1D09"
+        }
+    }
+}
