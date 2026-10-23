@@ -121,12 +121,24 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
     // Independent band gaps: 20-40 seconds, moving bottom to top.
     float bandAge = eventAge(t, 30., 10., 83.7);
     float band = 0.;
-    if (bandAge >= 0. && bandAge < 1.5) {
-        float progress = bandAge / 1.5;
-        float center = mix(-.05, 1.05, progress);
-        float envelope = sin(3.14159265359 * progress);
-        band = (1. - smoothstep(.003, .016, abs(uv.y - center))) * envelope;
-        band -= (1. - smoothstep(.003, .016, abs(uv.y - center + .04))) * envelope;
+    if (bandAge >= 0. && bandAge < 2.0) {
+        // Select one or three bands once per event, not once per frame.
+        float eventSlot = floor((t - bandAge + 0.001) / 30.);
+        int bandCount = eventRandom(eventSlot, 151.9) < 0.5 ? 1 : 3;
+        // Each pass lasts 1.5 seconds, with starts 0.25s apart.
+        // The leading pass remains aligned with the CRT bloom reset.
+        for (int i = 0; i < 3; i++) {
+            if (i >= bandCount) break;
+            float age = bandAge - float(i) * 0.25;
+            if (age >= 0. && age < 1.5) {
+                float progress = age / 1.5;
+                float center = mix(-.05, 1.05, progress);
+                float envelope = sin(3.14159265359 * progress);
+                float stripe = (1. - smoothstep(.003, .016, abs(uv.y - center))) * envelope;
+                stripe -= (1. - smoothstep(.003, .016, abs(uv.y - center + .04))) * envelope;
+                band += stripe;
+            }
+        }
         distortion += band * .02;
     }
     st = uv + vec2(distortion, 0.);

@@ -289,7 +289,7 @@ vec3 ToSrgb(vec3 c) {
 }
 
 // Glow controls: strength of the halo and its radius in screen pixels.
-#define BLOOM_STRENGTH 0.3218712
+#define BLOOM_STRENGTH 0.157716888
 #define BLOOM_RADIUS 6.0
 
 // Match the moving-band schedule in glitch-timed-color-v12.glsl.
@@ -307,26 +307,40 @@ float growingBloom(vec2 uv) {
   float lastReset = slot < 0.0 ? 0.0 : bloomBandStart(slot) + rowDelay;
   float nextReset = bloomBandStart(slot + 1.0) + rowDelay;
   float progress = clamp((iTime - lastReset) / max(nextReset - lastReset, 0.001), 0.0, 1.0);
-  return BLOOM_STRENGTH * mix(0.02, 1.0, progress);
+  float strength = mix(0.02, 1.0, progress);
+  // Fade across the passing band instead of abruptly stepping to zero.
+  if (slot >= 0.0) {
+    float resetFade = smoothstep(0.0, 0.08, iTime - lastReset);
+    strength = mix(1.0, strength, resetFade);
+  }
+  return BLOOM_STRENGTH * strength;
+}
+
+vec3 bloomSample(vec2 uv) {
+  vec3 color = texture(iChannel0, clamp(uv, vec2(0.0), vec2(1.0))).rgb;
+  float brightness = max(color.r, max(color.g, color.b));
+  return color * smoothstep(0.10, 0.65, brightness);
 }
 
 vec3 textBloom(vec2 uv) {
-  vec3 glow = vec3(0.0);
-  float totalWeight = 0.0;
   // Scale the halo for Retina displays while retaining a sharp text core.
   float radius = BLOOM_RADIUS * max(1.0, iResolution.y / 1000.0);
-  for (int y = -3; y <= 3; y++) {
-    for (int x = -3; x <= 3; x++) {
-      vec2 offset = vec2(float(x), float(y));
-      float weight = exp(-dot(offset, offset) / 4.5);
-      vec2 sampleUV = uv + offset * (radius / 3.0) / iResolution.xy;
-      vec3 sampleColor = texture(iChannel0, clamp(sampleUV, vec2(0.0), vec2(1.0))).rgb;
-      float brightness = max(sampleColor.r, max(sampleColor.g, sampleColor.b));
-      glow += sampleColor * smoothstep(0.10, 0.65, brightness) * weight;
-      totalWeight += weight;
-    }
-  }
-  return glow / totalWeight;
+  vec2 stepUV = vec2(radius) / iResolution.xy;
+  // Thirteen weighted taps replace the previous 49-tap blur.
+  vec3 glow = bloomSample(uv) * 0.20;
+  glow += (bloomSample(uv + stepUV * vec2( 0.5, 0.0))
+         + bloomSample(uv + stepUV * vec2(-0.5, 0.0))
+         + bloomSample(uv + stepUV * vec2(0.0,  0.5))
+         + bloomSample(uv + stepUV * vec2(0.0, -0.5))) * 0.09;
+  glow += (bloomSample(uv + stepUV * vec2( 0.5,  0.5))
+         + bloomSample(uv + stepUV * vec2(-0.5,  0.5))
+         + bloomSample(uv + stepUV * vec2( 0.5, -0.5))
+         + bloomSample(uv + stepUV * vec2(-0.5, -0.5))) * 0.065;
+  glow += (bloomSample(uv + stepUV * vec2( 1.0, 0.0))
+         + bloomSample(uv + stepUV * vec2(-1.0, 0.0))
+         + bloomSample(uv + stepUV * vec2(0.0,  1.0))
+         + bloomSample(uv + stepUV * vec2(0.0, -1.0))) * 0.045;
+  return glow;
 }
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord) {

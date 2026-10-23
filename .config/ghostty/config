@@ -1,8 +1,9 @@
 # Retro green phosphor palette.
 theme = Retro Green
 
-cursor-style = block
+cursor-style = underline
 cursor-style-blink = true
+shell-integration-features = no-cursor
 font-family = ""
 font-family = Departure Mono
 # Use Maple Mono only for Nerd Font symbols, not ordinary text.
@@ -13,9 +14,9 @@ background-blur = false
 
 custom-shader = shaders/block-cursor-halo.glsl
 # Continuous light jitter; occasional random bursts and bands with RGB splitting.
-custom-shader = shaders/glitch-timed-color-v12.glsl
+custom-shader = shaders/glitch-timed-color-v14.glsl
 # CRT curvature, scan lines, and luminous text bloom.
-custom-shader = shaders/crt-bloom-v10.glsl
+custom-shader = shaders/crt-bloom-v13.glsl
 # Bright monochrome text for both green and orange profiles.
 custom-shader = shaders/phosphor-brightness-v2.glsl
 custom-shader-animation = true

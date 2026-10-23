@@ -7,11 +7,12 @@ Personal terminal configuration for macOS and the Ubuntu SSH host.
 - Local Ghostty: bright green text on an almost-black green background.
 - Ubuntu SSH profile: bright orange text on black.
 - Departure Mono font, with Maple Mono NF for Nerd Font symbols.
-- Blinking block cursor with smooth movement and a green halo trail.
+- Blinking underscore cursor.
 - CRT curvature, scan lines, and text bloom that gradually builds between band passes.
-- Each passing band resets the bloom to almost zero as it crosses the screen.
+- The leading band resets the bloom to almost zero as it crosses the screen.
 - Light continuous jitter and 0.5-second bursts at random 1–5 minute intervals.
-- Moving bands at random 20–40 second intervals, with a 1.5-second travel time.
+- One or three moving bands, chosen randomly every 20–40 seconds, with a 1.5-second travel time per band.
+- Reduced peak bloom and a 13-sample filter for clearer text and less GPU work.
 - Monochrome output for both profiles, including application RGB colors.
 
 ## Files
